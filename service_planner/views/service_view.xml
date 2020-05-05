@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Copyright 2019 Marcelo Frare (Ass. PNLUG - Gruppo Odoo <http://odoo.pnlug.it>)
+     Copyright 2019 Stefano Consolaro (Ass. PNLUG - Gruppo Odoo <http://odoo.pnlug.it>)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl) -->
+     
+<odoo>
+    <!-- Define views for plan and levels -->
+    
+    <!-- ############# GLOBAL SERVICE #################### -->
+    <record model="ir.ui.view" id="service_global_tree">
+        <field name="name">Global Service</field>
+        <field name="model">service.global</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_smiling_face">Create the first Service</p>
+        </field>
+        <field name="arch" type="xml">
+            <tree string="Templates">
+                <field name="name"/>
+                <field name="description"/>
+            </tree>
+        </field>
+     </record>
+
+    <!-- ############# EXPECTED JOB #################### -->
+    <record model="ir.ui.view" id="expected_job_tree">
+        <field name="name">Expected Job</field>
+        <field name="model">expected.job</field>
+        <field name="arch" type="xml">
+            <tree string="Jobs">
+                <field name="job_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- ############# EXPECTED EQUIPMENT #################### -->
+    <record model="ir.ui.view" id="expected_equipment_tree">
+        <field name="name">Expected Equipment</field>
+        <field name="model">expected.equipment</field>
+        <field name="arch" type="xml">
+            <tree string="Equipment">
+                <field name="equipment_id"/>
+            </tree>
+        </field>
+    </record>
+
+        <!-- ############# EXPECTED VEHICLES #################### -->
+    <record model="ir.ui.view" id="expected_vehicle_tree">
+        <field name="name">Expected Vehicle</field>
+        <field name="model">expected.vehicle</field>
+        <field name="arch" type="xml">
+            <tree string="Vehicle">
+                <field name="vehicle_id"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <!-- ############# SERVICE TEMPLATE #################### -->
+    <record model="ir.ui.view" id="service_template_tree">
+        <field name="name">Service Template</field>
+        <field name="model">service.template</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_smiling_face">Create the first Service Template</p>
+        </field>
+        <field name="arch" type="xml">
+            <tree string="Templates">
+                <field name="name"/>
+                <field name="service_global_ids" widget="many2many_tags"/>
+                <field name="exp_job_ids" widget="many2many_tags"/>
+                <field name="exp_vehicle_ids" widget="many2many_tags"/>
+                <field name="exp_equipment_ids" widget="many2many_tags"/>
+            </tree>
+        </field>
+     </record>
+
+     <record model="ir.ui.view" id="service_template_form">
+        <field name="name">Service Template</field>
+        <field name="model">service.template</field>
+        <field name="arch" type="xml">
+            <form string="Service Template">
+            <sheet>
+                <h1><field name="name"/></h1>
+                <group>
+                    <group>
+                        <label for="service_global_ids" string="Global Services"/>
+                        <field name="service_global_ids" nolabel="1"/>
+                        <br/>
+                        <group>
+                            <group>
+                                <field name="duration"/>
+                                <field name="duration_uom_id"/>
+                            </group>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="exp_job_ids"/>
+                        <field name="exp_equipment_ids"/>
+                        <field name="exp_vehicle_ids"/>
+                    </group>
+                </group>
+                <group>
+                    <field name="product_id"/>
+                </group>
+            </sheet>
+            </form>
+        </field>
+     </record>
+
+     <!-- ############# SERVICE ALLOCATED #################### -->
+    <record model="ir.ui.view" id="service_allocate_tree">
+        <field name="name">Service Allocated</field>
+        <field name="model">service.allocate</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_smiling_face">Create the first Allocated Service</p>
+        </field>
+        <field name="arch" type="xml">
+            <tree string="Allocated">
+                <field name="service_template_id"/>
+                <field name="start_sked"/>
+                <field name="start_real"/>
+                <field name="stop_real"/>
+                <field name="employee_ids" widget="many2many_tags"/>
+                <field name="vehicle_ids" widget="many2many_tags"/>
+                <field name="equipment_ids" widget="many2many_tags"/>
+                <field name="state_id"/>
+            </tree>
+        </field>
+     </record>
+
+    <record model="ir.ui.view" id="service_allocate_form">
+        <field name="name">Service Allocated</field>
+        <field name="model">service.allocate</field>
+        <field name="arch" type="xml">
+            <form string="Allocated">
+                <group>
+                    <field name="service_template_id"/>
+                </group>
+                <group>
+                    <group>
+                        <group>
+                            <field name="start_sked"/>
+                            <field name="start_real"/>
+                            <field name="stop_real"/>
+                            <field name="state_id"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="vehicle_ids" widget="many2many_tags"/>
+                        <field name="employee_ids" widget="many2many_tags"/>
+                        <field name="equipment_ids" widget="many2many_tags"/>
+                    </group>
+                </group>
+            </form>
+        </field>
+     </record>
+</odoo>

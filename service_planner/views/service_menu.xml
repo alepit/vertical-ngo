@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Copyright 2019 Stefano Consolaro (Ass. PNLUG - Gruppo Odoo <http://odoo.pnlug.it>)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl) -->
+     
+<odoo>
+    <!-- add menu voice for Service -->
+
+     <!-- manage Service Planner -->
+     <!-- menu voice -->
+     <menuitem
+        id="menu_service_planner"
+        name="Service Planner"
+        web_icon="service_planner,static/description/icon.png"
+        sequence="110"/>
+
+    <!-- manage Global Services list -->
+    <!-- action -->
+    <act_window 
+          id = "act_service_global"
+          name = "Global Service"
+          res_model = "service.global"
+          view_mode = "tree,form" 
+          /> 
+
+    <!-- menu voice -->
+    <menuitem 
+          id = "menu_service_global"
+          name = "Global Service"
+          parent = "menu_service_planner"
+          sequence = "120"
+          action = "act_service_global"
+          />
+
+    <!-- manage Template Services list -->
+    <!-- action -->
+    <act_window 
+          id = "act_service_template"
+          name = "Service Template"
+          res_model = "service.template"
+          view_mode = "tree,form" 
+          />
+
+    <!-- menu voice -->
+    <menuitem 
+          id = "menu_service_template"
+          name = "Service Template"
+          parent = "menu_service_planner"
+          sequence = "110"
+          action = "act_service_template"
+          />
+
+     <!-- manage Services Allocated list -->
+     <!-- action -->
+     <act_window 
+          id = "act_service_allocate"
+          name = "Service Alocated"
+          res_model = "service.allocate"
+          view_mode = "tree,form" 
+          />
+
+     <!-- menu voice -->
+     <menuitem 
+          id = "menu_service_allocate"
+          name = "Service Allocated"
+          parent = "menu_service_planner"
+          sequence = "100"
+          action = "act_service_allocate"
+          />
+
+</odoo>
