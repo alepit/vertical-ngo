@@ -154,4 +154,19 @@
             </form>
         </field>
      </record>
+
+    <record model="ir.ui.view" id="service_allocate_calendar" >
+        <field name="name">Service Calendar</field>
+        <field name="model">service.allocate</field>
+        <field name="arch" type="xml">
+            <calendar 
+                date_start="start_sked"
+                color="id"
+                mode="week"
+                >
+                <field name="service_template_id"/>
+            </calendar>
+        </field>
+    </record>
+
 </odoo>

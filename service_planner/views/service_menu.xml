@@ -28,7 +28,7 @@
           id = "menu_service_global"
           name = "Global Service"
           parent = "menu_service_planner"
-          sequence = "120"
+          sequence = "190"
           action = "act_service_global"
           />
 
@@ -46,26 +46,40 @@
           id = "menu_service_template"
           name = "Service Template"
           parent = "menu_service_planner"
-          sequence = "110"
+          sequence = "150"
           action = "act_service_template"
           />
 
-     <!-- manage Services Allocated list -->
-     <!-- action -->
+     <!-- manage Services Allocated -->
+     <!-- list -->
      <act_window 
           id = "act_service_allocate"
           name = "Service Alocated"
           res_model = "service.allocate"
-          view_mode = "tree,form" 
+          view_mode = "tree,form"
           />
 
-     <!-- menu voice -->
      <menuitem 
           id = "menu_service_allocate"
           name = "Service Allocated"
           parent = "menu_service_planner"
-          sequence = "100"
+          sequence = "110"
           action = "act_service_allocate"
           />
 
+      <!-- calendar -->
+      <act_window 
+          id = "act_service_allocate_cal"
+          name = "Service Calendar"
+          res_model = "service.allocate"
+          view_mode = "calendar"
+          />
+
+     <menuitem 
+          id = "menu_service_allocate_cal"
+          name = "Service Calendar"
+          parent = "menu_service_planner"
+          sequence = "100"
+          action = "act_service_allocate_cal"
+          />
 </odoo>
