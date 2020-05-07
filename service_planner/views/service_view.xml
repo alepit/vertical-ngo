@@ -118,6 +118,7 @@
             <tree string="Allocated">
                 <field name="service_template_id"/>
                 <field name="start_sked"/>
+                <field name="stop_sked"/>
                 <field name="start_real"/>
                 <field name="stop_real"/>
                 <field name="employee_ids" widget="many2many_tags"/>
@@ -140,6 +141,7 @@
                     <group>
                         <group>
                             <field name="start_sked"/>
+                            <field name="stop_sked"/>
                             <field name="start_real"/>
                             <field name="stop_real"/>
                             <field name="state_id"/>
@@ -161,10 +163,12 @@
         <field name="arch" type="xml">
             <calendar 
                 date_start="start_sked"
-                color="id"
+                date_stop="stop_sked"
+                color="service_template_id"
                 mode="week"
                 >
                 <field name="service_template_id"/>
+                <field name="employee_ids" widget="many2many_binary"/>
             </calendar>
         </field>
     </record>
