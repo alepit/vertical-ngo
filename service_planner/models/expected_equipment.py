@@ -1,7 +1,7 @@
 # Copyright 2020 Stefano Consolaro (Ass. PNLUG - Gruppo Odoo <http://odoo.pnlug.it>)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import fields, models, api
+from odoo import fields, models
 
 
 class ExpectedEquipment(models.Model):
@@ -19,7 +19,7 @@ class ExpectedEquipment(models.Model):
     # maximum quantity: 0 for no limit
     max_qty = fields.Integer('Maximum quantity', help="Value 0 means no limit")
     # equipment required
-    equipment_id = fields.Many2one('maintenance.equipment',string='Equipment')
+    equipment_id = fields.Many2one('maintenance.equipment', string='Equipment')
 
     # define record name to display in form view
     _rec_name = 'equipment_id'

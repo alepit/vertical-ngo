@@ -1,7 +1,7 @@
 # Copyright 2020 Stefano Consolaro (Ass. PNLUG - Gruppo Odoo <http://odoo.pnlug.it>)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import fields, models, api
+from odoo import fields, models
 
 
 class ServiceTemplate(models.Model):
@@ -23,7 +23,7 @@ class ServiceTemplate(models.Model):
     duration = fields.Integer('Duration', required=True)
     # duration uom
     duration_uom_id = fields.Many2one('uom.uom', string='Unit of Measure')
-    
+
     # expected vehicles
     exp_vehicle_ids = fields.Many2many('expected.vehicle', string='Vehicles')
     # expected jobs

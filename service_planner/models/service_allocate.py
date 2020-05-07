@@ -31,7 +31,7 @@ class ServiceAllocate(models.Model):
     # skeduled start time
     start_sked = fields.Datetime('Start skeduled')
     # skeduled start time
-    stop_sked = fields.Datetime( 'Stop skeduled', compute='_compute_stop_sked', store=True)
+    stop_sked = fields.Datetime('Stop skeduled', compute='_cmp_stop_sked', store=True)
     # effective start time
     start_real = fields.Datetime('Start real')
     # effective stop time
@@ -41,6 +41,7 @@ class ServiceAllocate(models.Model):
     state_id = fields.Many2one('service.state', string='State')
 
     @api.depends('start_sked')
-    def _compute_stop_sked(self):
-        self.stop_sked = self.start_sked + datetime.timedelta(hours=self.service_template_id.duration)
+    def _cmp_stop_sked(self):
+        self.stop_sked = self.start_sked + \
+            datetime.timedelta(hours=self.service_template_id.duration)
         return
