@@ -42,6 +42,7 @@ class ServiceAllocate(models.Model):
 
     @api.depends('start_sked')
     def _cmp_stop_sked(self):
-        self.stop_sked = self.start_sked + \
-            datetime.timedelta(hours=self.service_template_id.duration)
+        for service in self:
+            service.stop_sked = service.start_sked + \
+                datetime.timedelta(hours=service.service_template_id.duration)
         return
