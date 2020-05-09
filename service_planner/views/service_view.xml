@@ -90,6 +90,7 @@
                             <group>
                                 <field name="duration"/>
                                 <field name="duration_uom_id"/>
+                                <field name="x_color" widget="color"/>
                             </group>
                         </group>
                     </group>
@@ -161,14 +162,14 @@
         <field name="name">Service Calendar</field>
         <field name="model">service.allocate</field>
         <field name="arch" type="xml">
-            <calendar 
+            <calendar
                 date_start="start_sked"
                 date_stop="stop_sked"
                 color="service_template_id"
                 mode="week"
                 >
                 <field name="service_template_id"/>
-                <field name="employee_ids" widget="many2many_binary"/>
+                <field name="employee_names"/>
             </calendar>
         </field>
     </record>

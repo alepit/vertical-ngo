@@ -33,3 +33,5 @@ class ServiceTemplate(models.Model):
 
     # product reference used to valorize
     product_id = fields.Many2one('product.product', string='Product reference')
+
+    x_color = fields.Char('Color')

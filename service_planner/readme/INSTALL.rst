@@ -1,1 +1,1 @@
-Istall with standar method
+Install with standard method
