@@ -16,7 +16,7 @@ class ServiceAllocate(models.Model):
 
     # fields
     # template service reference
-    service_template_id = fields.Many2one('service.template', string='Teplate service')
+    service_template_id = fields.Many2one('service.template', string='Template service')
     service_color = fields.Char('service.template', 
                                 related='service_template_id.x_color')
 
@@ -47,8 +47,10 @@ class ServiceAllocate(models.Model):
     @api.depends('start_sked')
     def _cmp_stop_sked(self):
         for service in self:
-            service.stop_sked = service.start_sked + \
-                datetime.timedelta(hours=service.service_template_id.duration)
+            slot = service.service_template_id.duration
+            # avoid empty value of duration
+            slot = slot if slot>0 else 1
+            service.stop_sked = service.start_sked + datetime.timedelta(hours=slot)
         return
 
     @api.depends('employee_ids')
