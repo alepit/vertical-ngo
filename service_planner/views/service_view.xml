@@ -174,4 +174,34 @@
         </field>
     </record>
 
+    <record model="ir.ui.view" id="service_allocate_timeline" >
+        <field name="name">Service Timeline</field>
+        <field name="model">service.allocate</field>
+        <field name="type">timeline</field>
+        <field name="arch" type="xml">
+            <timeline date_start="start_sked"
+                      date_stop="stop_sked"
+                      string="Service"
+                      default_group_by="service_template_id"
+                      event_open_popup="true"
+                      zoomKey="ctrlKey"
+                      colors="#ff0000:employee_ids == false;#00ff00:employee_ids == true;"
+                      dependency_arrow_old="task_dependency_ids">
+                <field name="id"/>
+                <templates>
+                    <div t-name="timeline-item">
+                        From 
+                        <span t-esc="record.start_sked"/>
+                        to
+                        <span t-esc="record.stop_sked"/>
+                        <br/>
+                        Employee
+                        <span t-esc="record.employee_ids"/>
+                        qui non mostra il campo =&gt;<span t-esc="record.employee_names"/>&lt;=
+                    </div>
+                </templates>
+            </timeline>
+        </field>
+    </record>
+
 </odoo>

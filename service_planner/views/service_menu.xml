@@ -82,4 +82,20 @@
           sequence = "100"
           action = "act_service_allocate_cal"
           />
+
+      <!-- timeline -->
+      <act_window 
+          id = "act_service_allocate_timeline"
+          name = "Service Timeline"
+          res_model = "service.allocate"
+          view_mode = "timeline"
+          />
+
+     <menuitem 
+          id = "menu_service_allocate_timeline"
+          name = "Service Timeline"
+          parent = "menu_service_planner"
+          sequence = "105"
+          action = "act_service_allocate_timeline"
+          />
 </odoo>

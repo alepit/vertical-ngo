@@ -17,7 +17,8 @@ class ServiceAllocate(models.Model):
     # fields
     # template service reference
     service_template_id = fields.Many2one('service.template', string='Teplate service')
-    service_color = fields.Char('service.template', related='service_template_id.x_color')
+    service_color = fields.Char('service.template', 
+                                related='service_template_id.x_color')
 
     # assigned vehicles
     vehicle_ids = fields.Many2many('fleet.vehicle', string='Vehicles')
