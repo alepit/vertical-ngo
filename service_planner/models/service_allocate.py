@@ -16,8 +16,17 @@ class ServiceAllocate(models.Model):
 
     # fields
     # template service reference
-    service_template_id = fields.Many2one('service.template', string='Template service')
-    service_color = fields.Char('service.template', 
+    service_template_id = fields.Many2one('service.template', 
+                                            string='Template service',
+                                            required=True,
+                                            )
+    # global service reference
+    service_global_id = fields.Many2one('service.global', 
+                                        string='Global service',
+                                        required=True,
+                                        )
+    # _TODO_ dedicated color
+    service_color = fields.Char('service.template',
                                 related='service_template_id.x_color')
 
     # assigned vehicles
@@ -33,7 +42,7 @@ class ServiceAllocate(models.Model):
     locality = fields.Char('Locality')
 
     # skeduled start time
-    start_sked = fields.Datetime('Start skeduled')
+    start_sked = fields.Datetime('Start skeduled', required=True)
     # skeduled start time
     stop_sked = fields.Datetime('Stop skeduled', compute='_cmp_stop_sked', store=True)
     # effective start time
@@ -47,10 +56,11 @@ class ServiceAllocate(models.Model):
     @api.depends('start_sked')
     def _cmp_stop_sked(self):
         for service in self:
-            slot = service.service_template_id.duration
-            # avoid empty value of duration
-            slot = slot if slot>0 else 1
-            service.stop_sked = service.start_sked + datetime.timedelta(hours=slot)
+            if service.start_sked:
+                slot = service.service_template_id.duration
+                # avoid empty value of duration
+                slot = slot if slot > 0 else 1
+                service.stop_sked = service.start_sked + datetime.timedelta(hours=slot)
         return
 
     @api.depends('employee_ids')
@@ -61,3 +71,17 @@ class ServiceAllocate(models.Model):
                 service.employee_names = service.employee_names + ' ' + \
                     employee.name
         return
+
+    # utility to filter global services to template's global services
+    @api.onchange('service_template_id')
+    def _get_template_global(self):
+        """
+        Extract list of global services associated to the template service 
+        """
+        global_services=[]
+        # reste value to avoid errors
+        self.service_global_id = [(5)]
+        for glob_srv in self.service_template_id.service_global_ids:
+            global_services.append(glob_srv.id)
+
+        return {'domain': {'service_global_id': [('id', 'in', global_services)]}}

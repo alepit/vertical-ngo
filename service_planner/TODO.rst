@@ -2,7 +2,7 @@ ToDo list
 
 
 **Model**
-    
+
 
 **View**
     * service allocate calendar

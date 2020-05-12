@@ -17,6 +17,7 @@
         'maintenance',
         'hr',
         'product',
+        'web_timeline',
         ],
     "data": [
         'security/ir.model.access.csv',

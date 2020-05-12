@@ -118,6 +118,7 @@
         <field name="arch" type="xml">
             <tree string="Allocated">
                 <field name="service_template_id"/>
+                <field name="service_global_id"/>
                 <field name="start_sked"/>
                 <field name="stop_sked"/>
                 <field name="start_real"/>
@@ -136,7 +137,16 @@
         <field name="arch" type="xml">
             <form string="Allocated">
                 <group>
-                    <field name="service_template_id"/>
+                    <group>
+                        <group>
+                            <field name="service_template_id"/>
+                            <field name="service_global_id" options="{'no_create_edit': True}"/>
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                    <group>
+                    </group>
                 </group>
                 <group>
                     <group>
@@ -182,7 +192,7 @@
             <timeline date_start="start_sked"
                       date_stop="stop_sked"
                       string="Service"
-                      default_group_by="service_template_id"
+                      default_group_by="service_global_id"
                       event_open_popup="true"
                       zoomKey="ctrlKey"
                       colors="#ff0000:employee_ids == false;#00ff00:employee_ids == true;"
