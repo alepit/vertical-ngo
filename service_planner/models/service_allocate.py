@@ -16,12 +16,12 @@ class ServiceAllocate(models.Model):
 
     # fields
     # template service reference
-    service_template_id = fields.Many2one('service.template', 
+    service_template_id = fields.Many2one('service.template',
                                             string='Template service',
                                             required=True,
                                             )
     # global service reference
-    service_global_id = fields.Many2one('service.global', 
+    service_global_id = fields.Many2one('service.global',
                                         string='Global service',
                                         required=True,
                                         )
@@ -32,19 +32,19 @@ class ServiceAllocate(models.Model):
     # assigned vehicles
     vehicle_ids = fields.Many2many('fleet.vehicle', string='Vehicles')
     # assigned employee
-    employee_ids = fields.Many2many('hr.employee', string='Équipe')
+    employee_ids = fields.Many2many('hr.employee', string='Crew')
     # employee names
     employee_names = fields.Char('Employees', compute='_cmp_emply_name', store=True)
-    # assigned equipments
-    equipment_ids = fields.Many2many('maintenance.equipment', string='Equipments')
+    # assigned equipment
+    equipment_ids = fields.Many2many('maintenance.equipment', string='Equipment')
 
     # locality reference
     locality = fields.Char('Locality')
 
-    # skeduled start time
-    start_sked = fields.Datetime('Start skeduled', required=True)
-    # skeduled start time
-    stop_sked = fields.Datetime('Stop skeduled', compute='_cmp_stop_sked', store=True)
+    # scheduled start time
+    start_sched = fields.Datetime('Start scheduled', required=True)
+    # scheduled start time
+    stop_sched = fields.Datetime('Stop scheduled', compute='_cmp_stop_sched', store=True)
     # effective start time
     start_real = fields.Datetime('Start real')
     # effective stop time
@@ -53,14 +53,14 @@ class ServiceAllocate(models.Model):
     # state of the service
     state_id = fields.Many2one('service.state', string='State')
 
-    @api.depends('start_sked')
-    def _cmp_stop_sked(self):
+    @api.depends('start_sched')
+    def _cmp_stop_sched(self):
         for service in self:
-            if service.start_sked:
+            if service.start_sched:
                 slot = service.service_template_id.duration
                 # avoid empty value of duration
                 slot = slot if slot > 0 else 1
-                service.stop_sked = service.start_sked + datetime.timedelta(hours=slot)
+                service.stop_sched = service.start_sched + datetime.timedelta(hours=slot)
         return
 
     @api.depends('employee_ids')
@@ -76,7 +76,7 @@ class ServiceAllocate(models.Model):
     @api.onchange('service_template_id')
     def _get_template_global(self):
         """
-        Extract list of global services associated to the template service 
+        Extract list of global services associated to the template service
         """
         global_services=[]
         # reste value to avoid errors

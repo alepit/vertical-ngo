@@ -28,8 +28,8 @@ class ServiceTemplate(models.Model):
     exp_vehicle_ids = fields.Many2many('expected.vehicle', string='Vehicles')
     # expected jobs
     exp_job_ids = fields.Many2many('expected.job', string='Jobs')
-    # expected equipments
-    exp_equipment_ids = fields.Many2many('expected.equipment', string='Equipments')
+    # expected equipment
+    exp_equipment_ids = fields.Many2many('expected.equipment', string='Equipment')
 
     # product reference used to valorize
     product_id = fields.Many2one('product.product', string='Product reference')

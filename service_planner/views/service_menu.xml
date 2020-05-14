@@ -2,7 +2,7 @@
 
 <!-- Copyright 2019 Stefano Consolaro (Ass. PNLUG - Gruppo Odoo <http://odoo.pnlug.it>)
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl) -->
-     
+
 <odoo>
     <!-- add menu voice for Service -->
 
@@ -16,15 +16,15 @@
 
     <!-- manage Global Services list -->
     <!-- action -->
-    <act_window 
+    <act_window
           id = "act_service_global"
           name = "Global Service"
           res_model = "service.global"
-          view_mode = "tree,form" 
-          /> 
+          view_mode = "tree,form"
+          />
 
     <!-- menu voice -->
-    <menuitem 
+    <menuitem
           id = "menu_service_global"
           name = "Global Service"
           parent = "menu_service_planner"
@@ -34,15 +34,15 @@
 
     <!-- manage Template Services list -->
     <!-- action -->
-    <act_window 
+    <act_window
           id = "act_service_template"
           name = "Service Template"
           res_model = "service.template"
-          view_mode = "tree,form" 
+          view_mode = "tree,form"
           />
 
     <!-- menu voice -->
-    <menuitem 
+    <menuitem
           id = "menu_service_template"
           name = "Service Template"
           parent = "menu_service_planner"
@@ -52,14 +52,14 @@
 
      <!-- manage Services Allocated -->
      <!-- list -->
-     <act_window 
+     <act_window
           id = "act_service_allocate"
-          name = "Service Alocated"
+          name = "Service Allocated"
           res_model = "service.allocate"
           view_mode = "tree,form"
           />
 
-     <menuitem 
+     <menuitem
           id = "menu_service_allocate"
           name = "Service Allocated"
           parent = "menu_service_planner"
@@ -68,14 +68,14 @@
           />
 
       <!-- calendar -->
-      <act_window 
+      <act_window
           id = "act_service_allocate_cal"
           name = "Service Calendar"
           res_model = "service.allocate"
           view_mode = "calendar"
           />
 
-     <menuitem 
+     <menuitem
           id = "menu_service_allocate_cal"
           name = "Service Calendar"
           parent = "menu_service_planner"
@@ -84,14 +84,14 @@
           />
 
       <!-- timeline -->
-      <act_window 
+      <act_window
           id = "act_service_allocate_timeline"
           name = "Service Timeline"
           res_model = "service.allocate"
           view_mode = "timeline"
           />
 
-     <menuitem 
+     <menuitem
           id = "menu_service_allocate_timeline"
           name = "Service Timeline"
           parent = "menu_service_planner"
