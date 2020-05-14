@@ -3,10 +3,10 @@
 <!-- Copyright 2019 Marcelo Frare (Ass. PNLUG - Gruppo Odoo <http://odoo.pnlug.it>)
      Copyright 2019 Stefano Consolaro (Ass. PNLUG - Gruppo Odoo <http://odoo.pnlug.it>)
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl) -->
-     
+
 <odoo>
     <!-- Define views for plan and levels -->
-    
+
     <!-- ############# GLOBAL SERVICE #################### -->
     <record model="ir.ui.view" id="service_global_tree">
         <field name="name">Global Service</field>
@@ -119,8 +119,8 @@
             <tree string="Allocated">
                 <field name="service_template_id"/>
                 <field name="service_global_id"/>
-                <field name="start_sked"/>
-                <field name="stop_sked"/>
+                <field name="start_sched"/>
+                <field name="stop_sched"/>
                 <field name="start_real"/>
                 <field name="stop_real"/>
                 <field name="employee_ids" widget="many2many_tags"/>
@@ -151,8 +151,8 @@
                 <group>
                     <group>
                         <group>
-                            <field name="start_sked"/>
-                            <field name="stop_sked"/>
+                            <field name="start_sched"/>
+                            <field name="stop_sched"/>
                             <field name="start_real"/>
                             <field name="stop_real"/>
                             <field name="state_id"/>
@@ -173,8 +173,8 @@
         <field name="model">service.allocate</field>
         <field name="arch" type="xml">
             <calendar
-                date_start="start_sked"
-                date_stop="stop_sked"
+                date_start="start_sched"
+                date_stop="stop_sched"
                 color="service_template_id"
                 mode="week"
                 >
@@ -189,8 +189,8 @@
         <field name="model">service.allocate</field>
         <field name="type">timeline</field>
         <field name="arch" type="xml">
-            <timeline date_start="start_sked"
-                      date_stop="stop_sked"
+            <timeline date_start="start_sched"
+                      date_stop="stop_sched"
                       string="Service"
                       default_group_by="service_global_id"
                       event_open_popup="true"
@@ -200,10 +200,10 @@
                 <field name="id"/>
                 <templates>
                     <div t-name="timeline-item">
-                        From 
-                        <span t-esc="record.start_sked"/>
+                        From
+                        <span t-esc="record.start_sched"/>
                         to
-                        <span t-esc="record.stop_sked"/>
+                        <span t-esc="record.stop_sched"/>
                         <br/>
                         Employee
                         <span t-esc="record.employee_ids"/>
